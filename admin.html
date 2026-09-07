@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bigby Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:#eee;
+    padding:20px;
+}
+
+input, textarea, button {
+    display:block;
+    width:100%;
+    max-width:500px;
+    margin:8px 0;
+    padding:10px;
+}
+
+button {
+    cursor:pointer;
+    background:#333;
+    color:white;
+    border:1px solid #555;
+}
+
+.card {
+    border:1px solid #444;
+    padding:15px;
+    margin:15px 0;
+    max-width:600px;
+}
+
+.hidden {
+    display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Bigby Admin</h1>
+
+
+<div id="login">
+
+<h2>Вход</h2>
+
+<input id="email" placeholder="Email">
+
+<input id="password" type="password" placeholder="Пароль">
+
+<button onclick="login()">Войти</button>
+
+</div>
+
+
+
+<div id="panel" class="hidden">
+
+<h2>Крафты</h2>
+
+<button onclick="logout()">Выйти</button>
+
+
+<h3>Добавить крафт</h3>
+
+<input id="name" placeholder="Название">
+
+<textarea id="description" placeholder="Описание"></textarea>
+
+<input id="category" placeholder="Категория">
+
+<button onclick="addCraft()">Добавить</button>
+
+
+<hr>
+
+<div id="crafts"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+const SUPABASE_URL =
+"https://rtzclwesyywqcbjysetz.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_Bj8PrsrKHgm_3mKtUpzkKQ_Np4CFxAo";
+
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+
+async function checkUser(){
+
+const {
+data
+} = await supabaseClient.auth.getSession();
+
+
+if(data.session){
+
+showAdmin();
+
+}
+
+}
+
+
+async function login(){
+
+const email =
+document.getElementById("email").value;
+
+
+const password =
+document.getElementById("password").value;
+
+
+
+const {
+error
+}= await supabaseClient.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+showAdmin();
+
+}
+
+
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+location.reload();
+
+}
+
+
+
+function showAdmin(){
+
+document
+.getElementById("login")
+.classList
+.add("hidden");
+
+
+document
+.getElementById("panel")
+.classList
+.remove("hidden");
+
+
+loadCrafts();
+
+}
+
+
+
+
+async function loadCrafts(){
+
+
+const {
+data,
+error
+}=await supabaseClient
+.from("crafts")
+.select("*")
+.order("id");
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+const box =
+document.getElementById("crafts");
+
+
+box.innerHTML="";
+
+
+data.forEach(c=>{
+
+
+box.innerHTML += `
+
+<div class="card">
+
+<h3>${c.name}</h3>
+
+<p>${c.description}</p>
+
+<p>Категория:
+${c.category}</p>
+
+
+<button onclick="editCraft(
+${c.id},
+'${escapeQuotes(c.name)}',
+'${escapeQuotes(c.description)}',
+'${escapeQuotes(c.category)}'
+)">
+Изменить
+</button>
+
+
+<button onclick="deleteCraft(${c.id})">
+Удалить
+</button>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+
+async function addCraft(){
+
+
+const name =
+document.getElementById("name").value;
+
+
+const description =
+document.getElementById("description").value;
+
+
+const category =
+document.getElementById("category").value;
+
+
+
+const {
+error
+}=await supabaseClient
+.from("crafts")
+.insert({
+
+name,
+description,
+category
+
+});
+
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert("Добавлено");
+
+
+loadCrafts();
+
+
+}
+
+
+
+async function deleteCraft(id){
+
+
+if(!confirm("Удалить?"))
+return;
+
+
+
+await supabaseClient
+.from("crafts")
+.delete()
+.eq("id",id);
+
+
+loadCrafts();
+
+
+}
+
+
+
+
+async function editCraft(
+id,
+oldName,
+oldDesc,
+oldCat
+){
+
+
+const name =
+prompt("Название",oldName);
+
+
+const description =
+prompt("Описание",oldDesc);
+
+
+const category =
+prompt("Категория",oldCat);
+
+
+
+await supabaseClient
+.from("crafts")
+.update({
+
+name,
+description,
+category
+
+})
+.eq("id",id);
+
+
+
+loadCrafts();
+
+
+}
+
+
+
+function escapeQuotes(str){
+
+return str
+.replace(/'/g,"\\'");
+
+}
+
+
+
+checkUser();
+
+
+</script>
+
+
+</body>
+</html>
