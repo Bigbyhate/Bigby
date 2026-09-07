@@ -204,13 +204,22 @@
 
     .pill {
       display: inline-flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 6px 16px;
-      font-size: 14px;
+      padding: 6px 14px;
+      font-size: 13px;
       background: var(--input-bg);
+      white-space: nowrap;
+    }
+    .pill input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
     .card {
@@ -411,6 +420,17 @@
       box-shadow: 0 4px 14px rgba(229,87,75,.2);
     }
     .search-row .btn.danger:hover { filter: brightness(1.08); }
+    /* компактный переключатель */
+    .search-row .pill {
+      padding: 6px 12px;
+      font-size: 13px;
+      gap: 6px;
+    }
+    .search-row .pill input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+    }
 
     @media (max-width: 720px) {
       .app { grid-template-columns: 1fr; }
@@ -445,7 +465,6 @@
           <span class="sub">Крафты доктора · Ингредиенты · Цены</span>
         </div>
       </div>
-      <!-- убрана иконка переключения темы -->
     </header>
 
     <nav class="tabs" role="tablist" aria-label="Разделы">
