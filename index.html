@@ -202,24 +202,39 @@
     }
     .btn.danger:hover { filter: brightness(1.08); }
 
-    .pill {
+    /* компактный переключатель — обводка в размер текста */
+    .toggle-compact {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 13px;
       background: var(--input-bg);
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: 0.15s;
       white-space: nowrap;
+      line-height: 1;
+      user-select: none;
     }
-    .pill input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
+    .toggle-compact:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+    }
+    .toggle-compact input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
       margin: 0;
       accent-color: var(--accent);
       cursor: pointer;
       flex-shrink: 0;
+    }
+    .toggle-compact .label-text {
+      font-size: 12px;
+      font-weight: 450;
+      letter-spacing: 0.01em;
     }
 
     .card {
@@ -420,17 +435,6 @@
       box-shadow: 0 4px 14px rgba(229,87,75,.2);
     }
     .search-row .btn.danger:hover { filter: brightness(1.08); }
-    /* компактный переключатель */
-    .search-row .pill {
-      padding: 6px 12px;
-      font-size: 13px;
-      gap: 6px;
-    }
-    .search-row .pill input[type="checkbox"] {
-      width: 14px;
-      height: 14px;
-      margin: 0;
-    }
 
     @media (max-width: 720px) {
       .app { grid-template-columns: 1fr; }
@@ -510,8 +514,11 @@
       <div class="search-row">
         <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
         <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
-        <label class="pill small" title="Разворачивать крафтовые ингредиенты до сырья">
-          <input id="expandToRaw" type="checkbox" checked> Разворачивать
+        
+        <!-- компактный переключатель с обводкой в размер текста -->
+        <label class="toggle-compact" title="Разворачивать крафтовые ингредиенты до сырья">
+          <input id="expandToRaw" type="checkbox" checked>
+          <span class="label-text">Разворачивать</span>
         </label>
       </div>
 
