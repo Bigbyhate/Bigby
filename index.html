@@ -202,12 +202,12 @@
     }
     .btn.danger:hover { filter: brightness(1.08); }
 
-    /* компактный переключатель — обводка вплотную к тексту */
+    /* КОМПАКТНЫЙ ПЕРЕКЛЮЧАТЕЛЬ — обводка плотно по содержимому */
     .toggle-compact {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 5px 10px;
+      gap: 3px;
+      padding: 2px 5px 2px 4px;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--input-bg);
@@ -218,25 +218,25 @@
       white-space: nowrap;
       line-height: 1.2;
       user-select: none;
-      height: 32px;
     }
     .toggle-compact:hover {
       border-color: var(--accent);
       color: var(--ink);
     }
     .toggle-compact input[type="checkbox"] {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       margin: 0;
       accent-color: var(--accent);
       cursor: pointer;
       flex-shrink: 0;
     }
     .toggle-compact .label-text {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 450;
       letter-spacing: 0.01em;
       line-height: 1;
+      padding-right: 1px;
     }
 
     .card {
@@ -517,7 +517,7 @@
         <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
         <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
         
-        <!-- компактный переключатель с обводкой вплотную к тексту -->
+        <!-- КОМПАКТНЫЙ ПЕРЕКЛЮЧАТЕЛЬ — ОБВОДКА ПЛОТНО ПО ТЕКСТУ -->
         <label class="toggle-compact" title="Разворачивать крафтовые ингредиенты до сырья">
           <input id="expandToRaw" type="checkbox" checked>
           <span class="label-text">Разворачивать</span>
@@ -572,7 +572,7 @@
 
 <script>
   // =====================================================
-  // ПОЛНЫЙ СКРИПТ (исправлен стак для хирургического набора)
+  // ПОЛНЫЙ СКРИПТ
   // =====================================================
 
   /* -------------------- УТИЛИТЫ -------------------- */
@@ -607,7 +607,7 @@
     });
   })();
 
-  // -------------------- ДАННЫЕ: докторские крафты (исправлен стак хирургического набора) --------------------
+  // -------------------- ДАННЫЕ: докторские крафты --------------------
   const DOCTOR_CRAFTS = [
     {id:"aptechka-heroine", name:"Аптечка на героине", output:1, stack:10, timeSec:60, ing:[
       {name:"Алоэ",qty:1,unit:"шт"},{name:"Аляскинский женьшень",qty:1,unit:"шт"},{name:"Бинт стерильный",qty:1,unit:"шт"},
