@@ -10,74 +10,94 @@
     * { box-sizing: border-box; }
     :root {
       color-scheme: dark;
-      --bg: #0b0d10;
-      --paper: #11151b;
-      --ink: #dee6ef;
-      --muted: #8892a3;
-      --line: #1f2630;
+      --bg: #0a0c10;
+      --paper: #11161e;
+      --ink: #e0e8f2;
+      --muted: #8a96a8;
+      --line: #1f2733;
       --accent: #3f8cff;
       --accent-2: #6ba6ff;
       --danger: #e5574b;
       --ok: #3cb179;
-      --radius: 12px;
+      --radius: 14px;
       --radius-sm: 8px;
-      --shadow: 0 12px 32px rgba(0,0,0,.6);
+      --shadow: 0 16px 40px rgba(0,0,0,.7);
       --font: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       --mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      --input-bg: #181e26;
+      --input-bg: #181f29;
     }
     html, body { height: 100%; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font: 15px/1.6 var(--font);
+      font: 16px/1.65 var(--font);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       display: flex;
       justify-content: center;
-      padding: 20px 16px;
+      padding: 24px 20px;
     }
     .app {
-      max-width: 1200px;
+      max-width: 1240px;
       width: 100%;
       display: grid;
-      grid-template-columns: 44px 1fr 44px;
-      gap: 18px;
+      grid-template-columns: 60px 1fr 60px;
+      gap: 24px;
       align-items: start;
     }
-    /* боковые декоративные полосы */
+    /* боковые декоративные панели — усиленный дизайн */
     .deco-left, .deco-right {
       position: sticky;
-      top: 24px;
+      top: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 28px;
-      padding-top: 12px;
+      gap: 32px;
+      padding-top: 20px;
     }
     .deco-left .line, .deco-right .line {
       width: 2px;
       background: linear-gradient(to bottom, transparent, var(--accent), var(--muted), transparent);
-      height: 200px;
-      opacity: 0.35;
+      height: 240px;
+      opacity: 0.4;
       border-radius: 4px;
     }
     .deco-icon {
-      font-size: 22px;
-      opacity: 0.3;
-      filter: grayscale(0.5);
-      transition: 0.2s;
+      font-size: 28px;
+      opacity: 0.4;
+      filter: grayscale(0.3);
+      transition: 0.25s;
+      background: var(--paper);
+      padding: 8px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      line-height: 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
     }
-    .deco-icon:hover { opacity: 0.6; filter: grayscale(0); }
+    .deco-icon:hover { opacity: 0.8; filter: grayscale(0); transform: scale(1.05); }
     .deco-left .deco-icon { transform: scaleX(-1); }
+    .deco-left .deco-icon:hover { transform: scaleX(-1) scale(1.05); }
+
+    /* маленькие декоративные точки */
+    .dot-group {
+      display: flex;
+      gap: 10px;
+      opacity: 0.2;
+    }
+    .dot-group span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
     .main {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 22px 24px 28px;
+      padding: 26px 28px 32px;
       backdrop-filter: blur(2px);
     }
 
@@ -87,41 +107,42 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
+      padding-bottom: 14px;
     }
     .brand {
       display: flex;
-      gap: 14px;
+      gap: 18px;
       align-items: center;
     }
     .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
       background: radial-gradient(circle at 30% 30%, #3f8cff, #0a4cbb);
-      box-shadow: 0 6px 14px rgba(63,140,255,.25);
+      box-shadow: 0 8px 20px rgba(63,140,255,.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 32px;
       font-weight: 600;
       color: #fff;
       letter-spacing: -0.5px;
+      border: 1px solid rgba(255,255,255,.08);
     }
-    h1 { font-size: 20px; margin: 0; font-weight: 500; letter-spacing: -0.3px; }
+    h1 { font-size: 24px; margin: 0; font-weight: 500; letter-spacing: -0.3px; }
     .sub {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
       letter-spacing: 0.02em;
       border-left: 1px solid var(--line);
-      padding-left: 12px;
+      padding-left: 14px;
       margin-left: 6px;
     }
     .toolbar {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       align-items: center;
       flex-wrap: wrap;
     }
@@ -129,14 +150,14 @@
     /* табы */
     .tabs {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin: 6px 0 18px;
+      margin: 8px 0 20px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 6px;
+      padding-bottom: 8px;
     }
     .tab, .btn-link {
-      padding: 8px 16px;
+      padding: 10px 20px;
       border: none;
       border-radius: 999px;
       background: transparent;
@@ -144,14 +165,14 @@
       cursor: pointer;
       text-decoration: none;
       font: inherit;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 450;
       transition: 0.15s;
     }
     .tab[aria-selected="true"] {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 4px 12px rgba(63,140,255,.25);
+      box-shadow: 0 4px 16px rgba(63,140,255,.3);
     }
     .tab:hover { color: var(--ink); background: var(--line); }
 
@@ -160,14 +181,14 @@
       border: none;
       background: var(--accent);
       color: #fff;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: 999px;
       cursor: pointer;
       font: inherit;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 450;
       transition: 0.15s;
-      box-shadow: 0 4px 10px rgba(63,140,255,.15);
+      box-shadow: 0 4px 14px rgba(63,140,255,.2);
     }
     .btn:hover { filter: brightness(1.12); }
     .btn.ghost {
@@ -178,18 +199,18 @@
     }
     .btn.danger {
       background: var(--danger);
-      box-shadow: 0 4px 10px rgba(229,87,75,.2);
+      box-shadow: 0 4px 14px rgba(229,87,75,.2);
     }
     .btn.danger:hover { filter: brightness(1.08); }
 
     .pill {
       display: inline-flex;
-      gap: 8px;
+      gap: 10px;
       align-items: center;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 4px 14px;
-      font-size: 12px;
+      padding: 6px 16px;
+      font-size: 13px;
       background: var(--input-bg);
     }
 
@@ -198,13 +219,13 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 16px 18px;
+      padding: 18px 20px;
     }
 
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
-    label { display: block; margin: 8px 0 4px; font-weight: 500; font-size: 13px; color: var(--muted); }
+    label { display: block; margin: 8px 0 4px; font-weight: 500; font-size: 14px; color: var(--muted); }
     input, select {
       width: 100%;
       padding: 10px 14px;
@@ -215,6 +236,7 @@
       font: inherit;
       outline: none;
       transition: 0.15s;
+      font-size: 14px;
     }
     select, option { color: var(--ink); background: var(--input-bg); }
     input:focus, select:focus {
@@ -225,15 +247,15 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 14px;
     }
     th, td {
-      padding: 8px 6px;
+      padding: 10px 8px;
       border-bottom: 1px solid var(--line);
       vertical-align: middle;
     }
     th {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted);
@@ -241,59 +263,60 @@
     }
     .right { text-align: right; }
     .muted { color: var(--muted); }
-    .small { font-size: 12px; }
+    .small { font-size: 13px; }
     .mono { font-family: var(--mono); letter-spacing: -0.2px; }
 
-    .hr { height: 1px; background: var(--line); margin: 16px 0; }
+    .hr { height: 1px; background: var(--line); margin: 18px 0; }
 
     /* плитки */
     .tiles {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
-      gap: 14px;
-      margin-top: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
+      gap: 16px;
+      margin-top: 10px;
     }
     .tile {
       background: var(--input-bg);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       transition: 0.1s;
     }
     .tile:hover { border-color: var(--accent); }
-    .tile h4 { margin: 0; font-size: 15px; font-weight: 500; letter-spacing: -0.2px; }
+    .tile h4 { margin: 0; font-size: 16px; font-weight: 500; letter-spacing: -0.2px; }
     .chip {
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 2px 10px;
-      font-size: 11px;
+      padding: 4px 12px;
+      font-size: 12px;
       color: var(--muted);
       background: var(--bg);
     }
-    .ing { margin: 0; padding-left: 18px; font-size: 13px; }
+    .ing { margin: 0; padding-left: 20px; font-size: 14px; }
     .qtybar {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       align-items: center;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .qtybar input {
       max-width: 80px;
       text-align: right;
-      padding: 6px 8px;
+      padding: 6px 10px;
+      font-size: 14px;
     }
     .subtabs {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
       margin: 8px 0;
     }
     .subtabs .tab {
-      padding: 4px 14px;
-      font-size: 12px;
+      padding: 6px 16px;
+      font-size: 13px;
       border: 1px solid var(--line);
       background: transparent;
       color: var(--muted);
@@ -305,44 +328,43 @@
       border-color: var(--accent);
     }
 
-    .tree { display: flex; flex-direction: column; gap: 10px; }
+    .tree { display: flex; flex-direction: column; gap: 12px; }
     .tree .group {
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
-      padding: 12px;
+      padding: 14px;
       background: var(--bg);
     }
-    .tree summary { cursor: pointer; user-select: none; font-weight: 450; }
-    .tree ul { margin: 6px 0 0 18px; padding-left: 6px; }
+    .tree summary { cursor: pointer; user-select: none; font-weight: 450; font-size: 14px; }
+    .tree ul { margin: 8px 0 0 18px; padding-left: 8px; }
     .badge {
       display: inline-block;
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 0 8px;
-      font-size: 11px;
+      padding: 0 10px;
+      font-size: 12px;
       color: var(--muted);
-      margin-left: 4px;
+      margin-left: 6px;
     }
     .badge.craft { border-color: var(--accent); color: var(--accent); }
     .badge.raw { border-color: var(--muted); }
 
-    .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     @media (max-width: 900px) { .two-cols { grid-template-columns: 1fr; } }
 
     footer {
-      margin-top: 20px;
-      padding-top: 14px;
+      margin-top: 24px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
       letter-spacing: 0.02em;
-      line-height: 1.7;
+      line-height: 1.8;
     }
     footer strong { color: var(--ink); font-weight: 450; }
 
-    /* иконки и мелочи */
-    .icon { margin-right: 6px; opacity: 0.6; }
+    .icon { margin-right: 8px; opacity: 0.6; }
     .deco-icon { user-select: none; }
 
     @media (max-width: 720px) {
@@ -354,20 +376,22 @@
 </head>
 <body>
 <div class="app">
-  <!-- левая декоративная полоса -->
+  <!-- левая декоративная панель -->
   <aside class="deco-left">
     <div class="deco-icon">⚕️</div>
     <div class="line"></div>
-    <div class="deco-icon">🧪</div>
+    <div class="deco-icon">🧬</div>
     <div class="line"></div>
-    <div class="deco-icon">💊</div>
+    <div class="deco-icon">🩸</div>
+    <div class="dot-group"><span></span><span></span><span></span></div>
+    <div class="deco-icon">💉</div>
   </aside>
 
   <!-- основной контент -->
   <main class="main">
     <header>
       <div class="brand">
-        <div class="logo">⛑</div>
+        <div class="logo">⚕️</div>
         <div>
           <h1>Bigby</h1>
           <span class="sub">Крафты доктора · Ингредиенты · Цены</span>
@@ -385,8 +409,8 @@
 
     <!-- ===== КАЛЬКУЛЯТОР ===== -->
     <section id="calc" class="card" role="tabpanel" aria-labelledby="tab-calc">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
-        <h3 style="margin:0; font-weight:500;">Материалы и порядок</h3>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h3 style="margin:0; font-weight:500; font-size:18px;">Материалы и порядок</h3>
         <nav class="subtabs" role="tablist" aria-label="Вид итогов">
           <button class="tab" data-mode="tree" aria-selected="true">🌳 Дерево</button>
           <button class="tab" data-mode="totals" aria-selected="false">📦 Сырьё</button>
@@ -417,10 +441,10 @@
 
       <div class="hr"></div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <h3 style="margin:0; font-weight:500;">Крафты доктора</h3>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <input id="craftSearch" type="text" placeholder="Поиск: мазь, опиум…" style="max-width:200px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <h3 style="margin:0; font-weight:500; font-size:18px;">Крафты доктора</h3>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <input id="craftSearch" type="text" placeholder="Поиск: мазь, опиум…" style="max-width:220px;">
           <label class="pill small" title="Разворачивать крафтовые ингредиенты до сырья">
             <input id="expandToRaw" type="checkbox" checked> Разворачивать
           </label>
@@ -433,14 +457,14 @@
 
     <!-- ===== ЦЕНЫ ===== -->
     <section id="prices" class="card" role="tabpanel" aria-labelledby="tab-prices" hidden>
-      <h3 style="margin:4px 0 12px; font-weight:500;">Калькулятор оплаты</h3>
-      <div class="toolbar" style="gap:10px; flex-wrap:wrap;">
-        <select id="payItem" aria-label="Позиция для чека" style="max-width:220px;"></select>
+      <h3 style="margin:4px 0 14px; font-weight:500; font-size:18px;">Калькулятор оплаты</h3>
+      <div class="toolbar" style="gap:12px; flex-wrap:wrap;">
+        <select id="payItem" aria-label="Позиция для чека" style="max-width:240px;"></select>
         <input id="payQty" type="number" min="1" step="1" value="1" style="max-width:100px;" aria-label="Количество">
         <button id="payAdd" class="btn">➕ Добавить</button>
         <button id="payClear" class="btn danger">🗑 Очистить чек</button>
       </div>
-      <table id="payTable" style="margin-top:8px;">
+      <table id="payTable" style="margin-top:10px;">
         <thead><tr><th>Позиция</th><th class="right">Кол-во</th><th class="right">Цена за ед.</th><th class="right">Итого</th><th class="right">Действия</th></tr></thead>
         <tbody></tbody>
         <tfoot><tr><th colspan="3" class="right">Итого к оплате:</th><th class="right mono" id="payTotal" aria-live="polite">$0.00</th><th></th></tr></tfoot>
@@ -448,10 +472,10 @@
 
       <div class="hr"></div>
 
-      <h3 style="margin:12px 0; font-weight:500;">💰 Стоимость услуг</h3>
+      <h3 style="margin:14px 0; font-weight:500; font-size:18px;">💰 Стоимость услуг</h3>
       <table><thead><tr><th>Услуга</th><th class="right">Цена</th></tr></thead><tbody id="services"></tbody></table>
       <div class="hr"></div>
-      <h3 style="margin:12px 0; font-weight:500;">🧾 Продажи</h3>
+      <h3 style="margin:14px 0; font-weight:500; font-size:18px;">🧾 Продажи</h3>
       <table><thead><tr><th>Товар</th><th class="right">Цена</th><th>Примечание</th></tr></thead><tbody id="goods"></tbody></table>
     </section>
 
@@ -462,46 +486,24 @@
     </footer>
   </main>
 
-  <!-- правая декоративная полоса -->
+  <!-- правая декоративная панель (исправлена иконка) -->
   <aside class="deco-right">
-    <div class="deco-icon">🧬</div>
-    <div class="line"></div>
-    <div class="deco-icon">🩸</div>
+    <div class="deco-icon">🧪</div>
     <div class="line"></div>
     <div class="deco-icon">🫀</div>
+    <div class="line"></div>
+    <div class="deco-icon">🦷</div>
+    <div class="dot-group"><span></span><span></span><span></span></div>
+    <div class="deco-icon">🧫</div>
   </aside>
 </div>
 
 <script>
-  /* -------------------- СКРИПТ (без изменений, кроме инициализации темы) -------------------- */
-  // …весь JS из оригинального файла, идентичный, с одним дополнением: тема стартует с тёмной
-  (function(){
-    const KEY = "hrp_theme";
-    const saved = localStorage.getItem(KEY);
-    const start = (saved === "dark" || saved === "light") ? saved : "dark";
-    function apply(theme){
-      document.documentElement.setAttribute("data-theme", theme);
-      document.documentElement.style.colorScheme = (theme === "dark") ? "dark" : "light";
-      localStorage.setItem(KEY, theme);
-      const btn = document.getElementById("toggleTheme");
-      if(btn) btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-      if(btn) btn.textContent = theme === "dark" ? "☀️" : "🌙";
-    }
-    apply(start);
-    const btn = document.getElementById("toggleTheme");
-    btn && btn.addEventListener("click", ()=>{
-      const cur = document.documentElement.getAttribute("data-theme")==="dark"?"dark":"light";
-      apply(cur==="dark"?"light":"dark");
-    });
-  })();
+  // =====================================================
+  // ПОЛНЫЙ СКРИПТ (исправлен стак для хирургического набора)
+  // =====================================================
 
-  // Остальной код полностью сохранён из оригинала (функции, данные, рендеры)
-  // Чтобы не нарушать работу, весь JS ниже — точная копия, за исключением переопределения стилей (уже в CSS)
-  // (вставка оригинала, но мы помещаем его в этот же скрипт)
-  // Для краткости в этом ответе я привожу сжатую версию, но логика полностью идентична.
-  // ВНИМАНИЕ: в реальном файле ниже должен быть полный скрипт из исходника.
-  // Здесь он приведён в сокращении из-за лимитов, но в финальном ответе я использую полный скрипт.
-  // -------------------- УТИЛИТЫ --------------------
+  /* -------------------- УТИЛИТЫ -------------------- */
   const $  = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
   const fmt = n => { const x = Math.round((Number(n)||0 + Number.EPSILON)*100)/100; return String(x).replace(".", ","); };
@@ -533,7 +535,7 @@
     });
   })();
 
-  // -------------------- ДАННЫЕ: докторские крафты --------------------
+  // -------------------- ДАННЫЕ: докторские крафты (исправлен стак хирургического набора) --------------------
   const DOCTOR_CRAFTS = [
     {id:"aptechka-heroine", name:"Аптечка на героине", output:1, stack:10, timeSec:60, ing:[
       {name:"Алоэ",qty:1,unit:"шт"},{name:"Аляскинский женьшень",qty:1,unit:"шт"},{name:"Бинт стерильный",qty:1,unit:"шт"},
@@ -579,7 +581,7 @@
       {name:"Алоэ",qty:2,unit:"шт"},{name:"Мягкая древесина",qty:1,unit:"шт"},{name:"Спирт",qty:1,unit:"шт"},{name:"Стеклянная бутылка",qty:1,unit:"шт"}]},
     {id:"nast-uspokaiv", name:"Успокаивающая настойка", output:1, stack:15, timeSec:20, ing:[
       {name:"Алоэ",qty:1,unit:"шт"},{name:"Американский женьшень",qty:1,unit:"шт"},{name:"Дикая мята",qty:2,unit:"шт"},{name:"Спирт",qty:1,unit:"шт"}]},
-    {id:"hirurg-nabor", name:"Хирургический набор", output:1, stack:10, timeSec:45, ing:[
+    {id:"hirurg-nabor", name:"Хирургический набор", output:1, stack:5, timeSec:45, ing:[
       {name:"Вода",qty:1,unit:"шт"},{name:"Бинт простой",qty:1,unit:"шт"},{name:"Змеиный яд",qty:1,unit:"шт"},{name:"Опиум",qty:1,unit:"шт"},{name:"Спирт",qty:1,unit:"шт"}]},
     {id:"yad", name:"Яд", output:2, stack:20, timeSec:45, ing:[
       {name:"Змеиный яд",qty:1,unit:"шт"},{name:"Нитрит",qty:3,unit:"шт"},{name:"Прерийный мак",qty:3,unit:"шт"}]},
