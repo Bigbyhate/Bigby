@@ -6,34 +6,38 @@
     <title>Bigby · Крафты доктора</title>
     <meta name="description" content="Bigby — крафты, ингредиенты, порядок изготовления и цены для доктора." />
     <style>
-        /* ===== ТИХАЯ ТЕМНАЯ БАЗА ===== */
+        /* ===== ГЛУБОКАЯ ТЁМНАЯ ТЕМА ===== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         :root {
-            --bg: #0a0c12;
-            --bg-secondary: #0f121b;
-            --surface: #141a24;
-            --card: #1b2330;
-            --card-hover: #222c3c;
-            --border-subtle: #2a3444;
-            --text: #edf2f7;
-            --text-muted: #8f9bb3;
-            --text-soft: #c5d0e0;
+            --bg-primary: #080b12;
+            --bg-secondary: #0d111c;
+            --surface: #131b28;
+            --card: #1a2436;
+            --card-hover: #212e44;
+            --border-subtle: #2a3850;
+            --text: #eaf0f8;
+            --text-muted: #8f9fb5;
+            --text-soft: #c8d4e6;
             --accent: #5f9eff;
+            --accent-glow: rgba(95, 158, 255, 0.15);
             --accent-dim: #2f5a9a;
             --danger: #e45c5c;
-            --shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-            --radius-card: 20px;
+            --shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+            --radius-card: 22px;
             --radius-sm: 12px;
             --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --mono: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            background: var(--bg);
+            background: var(--bg-primary);
             color: var(--text);
             font: 16px/1.6 var(--font);
             padding: 20px 16px 40px;
@@ -45,77 +49,41 @@
         }
 
         /* ===== ДЕКОРАТИВНЫЙ ФОН ===== */
-        body::before {
-            content: '';
+        .bg-orb {
             position: fixed;
-            top: -40%;
-            left: -20%;
-            width: 60%;
-            height: 80%;
-            background: radial-gradient(ellipse at 30% 40%, rgba(30, 80, 180, 0.10) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(120px);
             pointer-events: none;
             z-index: 0;
         }
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -30%;
-            right: -20%;
-            width: 60%;
-            height: 80%;
-            background: radial-gradient(ellipse at 70% 60%, rgba(80, 40, 160, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
+        .bg-orb--1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(45, 90, 200, 0.12) 0%, transparent 70%);
         }
+        .bg-orb--2 {
+            width: 600px;
+            height: 600px;
+            bottom: -250px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(120, 60, 200, 0.08) 0%, transparent 70%);
+        }
+        .bg-orb--3 {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(95, 158, 255, 0.05) 0%, transparent 70%);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
-        }
-
-        /* ===== ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ===== */
-        .bg-pulse {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(95, 158, 255, 0.06) 0%, transparent 70%);
-            animation: pulseGlow 6s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-        @keyframes pulseGlow {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                transform: scale(1.3);
-                opacity: 0.2;
-            }
-        }
-        .bg-cross {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 200px;
-            opacity: 0.025;
-            pointer-events: none;
-            z-index: 0;
-            font-family: var(--font);
-            color: var(--accent);
-            user-select: none;
-        }
-        @media (max-width: 768px) {
-            .bg-cross {
-                font-size: 100px;
-                left: 10px;
-            }
         }
 
         /* ===== ВЕРХНИЙ БАР ===== */
@@ -135,11 +103,11 @@
             text-decoration: none;
         }
         .brand-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #1a2f5a, #0f1a33);
-            box-shadow: 0 8px 24px rgba(30, 70, 180, 0.25);
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #1a2f5a, #0d1830);
+            box-shadow: 0 8px 28px rgba(30, 70, 180, 0.30);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -149,22 +117,22 @@
             overflow: hidden;
         }
         .brand-icon svg {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
         }
         .brand-icon::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(95, 158, 255, 0.15) 0%, transparent 60%);
+            background: linear-gradient(135deg, rgba(95, 158, 255, 0.20) 0%, transparent 60%);
             pointer-events: none;
         }
         .brand h1 {
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             color: #fff;
-            background: linear-gradient(135deg, #fff 60%, var(--accent));
+            background: linear-gradient(135deg, #ffffff 50%, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -175,6 +143,7 @@
             font-weight: 400;
             color: var(--text-muted);
             margin-top: 2px;
+            letter-spacing: 0.3px;
         }
         .top-actions {
             display: flex;
@@ -186,7 +155,7 @@
             background: var(--card);
             border: 1px solid var(--border-subtle);
             color: var(--text-soft);
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 40px;
             font-size: 14px;
             cursor: pointer;
@@ -205,7 +174,7 @@
             gap: 6px;
             margin-bottom: 28px;
             background: var(--surface);
-            padding: 5px;
+            padding: 6px;
             border-radius: 60px;
             width: fit-content;
             border: 1px solid var(--border-subtle);
@@ -215,34 +184,35 @@
         .tab-btn {
             background: transparent;
             border: none;
-            padding: 9px 24px;
+            padding: 10px 28px;
             border-radius: 40px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             color: var(--text-muted);
             cursor: pointer;
             transition: var(--transition);
+            letter-spacing: 0.2px;
         }
         .tab-btn[aria-selected="true"] {
             background: var(--card-hover);
             color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
         .tab-btn:hover {
             color: #fff;
         }
 
-        /* ===== КАРТОЧКИ (СТЕКЛЯННЫЙ ЭФФЕКТ) ===== */
+        /* ===== КАРТОЧКИ ===== */
         .card-panel {
             background: var(--surface);
             border-radius: var(--radius-card);
-            padding: 28px 24px;
+            padding: 32px 28px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-subtle);
             margin-bottom: 32px;
-            backdrop-filter: blur(8px);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(4px);
         }
         .card-panel::before {
             content: '';
@@ -252,11 +222,11 @@
             pointer-events: none;
         }
         .card-panel h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 18px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
             color: #fff;
-            letter-spacing: -0.2px;
+            letter-spacing: -0.3px;
         }
 
         /* ===== ПОИСК И ФИЛЬТРЫ ===== */
@@ -276,7 +246,7 @@
             background: var(--card);
             border: 1px solid var(--border-subtle);
             border-radius: 60px;
-            padding: 10px 20px;
+            padding: 11px 22px;
             font-size: 15px;
             color: var(--text);
             transition: var(--transition);
@@ -287,7 +257,7 @@
         }
         .search-wrap input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(95, 158, 255, 0.08);
+            box-shadow: 0 0 0 4px var(--accent-glow);
         }
         .filter-group {
             display: flex;
@@ -316,7 +286,7 @@
             background: transparent;
             border: 1px solid var(--border-subtle);
             color: var(--text-muted);
-            padding: 8px 20px;
+            padding: 8px 22px;
             border-radius: 40px;
             font-size: 14px;
             cursor: pointer;
@@ -331,19 +301,19 @@
         /* ===== СЕТКА РЕЦЕПТОВ ===== */
         .recipe-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 22px;
-            margin-top: 6px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
         }
         .recipe-card {
             background: var(--card);
             border-radius: var(--radius-card);
-            padding: 20px 18px 18px;
+            padding: 22px 20px 20px;
             transition: var(--transition);
             border: 1px solid transparent;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
             position: relative;
             overflow: hidden;
         }
@@ -351,14 +321,14 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(95, 158, 255, 0.03) 0%, transparent 60%);
+            background: linear-gradient(145deg, rgba(95, 158, 255, 0.04) 0%, transparent 60%);
             pointer-events: none;
         }
         .recipe-card:hover {
             background: var(--card-hover);
             border-color: var(--border-subtle);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
         .recipe-header {
             display: flex;
@@ -367,8 +337,8 @@
             gap: 10px;
         }
         .recipe-header h3 {
-            font-weight: 500;
-            font-size: 17px;
+            font-weight: 600;
+            font-size: 18px;
             color: #fff;
             letter-spacing: -0.2px;
         }
@@ -376,7 +346,7 @@
             background: var(--surface);
             color: var(--text-muted);
             font-size: 12px;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 40px;
             white-space: nowrap;
             border: 1px solid var(--border-subtle);
@@ -388,7 +358,7 @@
             font-size: 13px;
             color: var(--text-muted);
             border-top: 1px solid var(--border-subtle);
-            padding-top: 12px;
+            padding-top: 14px;
         }
         .recipe-meta span {
             display: inline-flex;
@@ -407,10 +377,10 @@
         .recipe-ingredients li {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             color: var(--text-soft);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 5px;
         }
         .recipe-ingredients li:last-child {
             border-bottom: none;
@@ -431,7 +401,7 @@
             font-weight: 500;
             color: #fff;
             background: var(--surface);
-            padding: 0 10px;
+            padding: 0 12px;
             border-radius: 20px;
             font-size: 13px;
             border: 1px solid var(--border-subtle);
@@ -443,14 +413,14 @@
             margin-top: 8px;
             flex-wrap: wrap;
             border-top: 1px solid var(--border-subtle);
-            padding-top: 14px;
+            padding-top: 16px;
         }
         .plan-control .qty-input {
-            width: 64px;
-            background: var(--bg);
+            width: 66px;
+            background: var(--bg-primary);
             border: 1px solid var(--border-subtle);
             border-radius: 40px;
-            padding: 6px 6px 6px 12px;
+            padding: 6px 6px 6px 14px;
             color: #fff;
             font-size: 15px;
             text-align: center;
@@ -464,8 +434,8 @@
             background: var(--surface);
             border: 1px solid var(--border-subtle);
             color: var(--text-soft);
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 40px;
             font-size: 18px;
             display: inline-flex;
@@ -502,7 +472,7 @@
             background: var(--danger);
             color: #fff;
             font-size: 11px;
-            padding: 0 10px;
+            padding: 0 12px;
             border-radius: 40px;
             margin-left: 6px;
         }
@@ -511,20 +481,21 @@
         .sub-tabs {
             display: flex;
             gap: 4px;
-            background: var(--bg);
+            background: var(--bg-primary);
             padding: 4px;
             border-radius: 40px;
             width: fit-content;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             border: 1px solid var(--border-subtle);
         }
         .sub-tab {
             background: transparent;
             border: none;
-            padding: 6px 20px;
+            padding: 7px 22px;
             border-radius: 40px;
             color: var(--text-muted);
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -545,9 +516,9 @@
         .tree-wrap .group {
             background: var(--card);
             border-radius: var(--radius-sm);
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            border-left: 3px solid var(--accent);
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            border-left: 4px solid var(--accent);
         }
         .tree-wrap details {
             margin-top: 4px;
@@ -555,15 +526,16 @@
         .tree-wrap summary {
             cursor: pointer;
             color: var(--text-soft);
-            font-weight: 450;
+            font-weight: 500;
+            font-size: 15px;
         }
         .tree-wrap ul {
-            padding-left: 22px;
-            margin: 8px 0 4px;
+            padding-left: 26px;
+            margin: 10px 0 4px;
             list-style: none;
         }
         .tree-wrap li {
-            padding: 3px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .tree-wrap li:last-child {
@@ -573,18 +545,18 @@
             background: var(--surface);
             color: var(--text-muted);
             font-size: 11px;
-            padding: 2px 10px;
+            padding: 2px 12px;
             border-radius: 40px;
-            margin-left: 8px;
+            margin-left: 10px;
             border: 1px solid var(--border-subtle);
         }
         .badge-craft {
             background: var(--accent-dim);
             color: #fff;
             font-size: 11px;
-            padding: 2px 10px;
+            padding: 2px 12px;
             border-radius: 40px;
-            margin-left: 8px;
+            margin-left: 10px;
         }
         .muted {
             color: var(--text-muted);
@@ -595,15 +567,17 @@
         }
         th {
             text-align: left;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-muted);
             font-size: 13px;
-            padding: 8px 4px 8px 0;
+            padding: 10px 6px 10px 0;
             border-bottom: 1px solid var(--border-subtle);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         td {
-            padding: 8px 4px 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 10px 6px 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--text-soft);
         }
         .right {
@@ -620,28 +594,28 @@
             align-items: center;
             gap: 12px;
             background: var(--card);
-            padding: 14px 18px;
+            padding: 14px 20px;
             border-radius: 60px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             border: 1px solid var(--border-subtle);
         }
         .pay-row select {
-            background: var(--bg);
+            background: var(--bg-primary);
             border: 1px solid var(--border-subtle);
             border-radius: 40px;
-            padding: 8px 16px;
+            padding: 9px 18px;
             color: #fff;
             font-size: 15px;
             outline: none;
-            flex: 1 1 160px;
+            flex: 1 1 170px;
         }
         .pay-row input {
-            background: var(--bg);
+            background: var(--bg-primary);
             border: 1px solid var(--border-subtle);
             border-radius: 40px;
-            padding: 8px 14px;
+            padding: 9px 14px;
             color: #fff;
-            width: 90px;
+            width: 100px;
             font-size: 15px;
             outline: none;
         }
@@ -652,10 +626,10 @@
         .pay-row .btn {
             background: var(--accent);
             border: none;
-            padding: 8px 22px;
+            padding: 9px 24px;
             border-radius: 40px;
             color: #fff;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -672,28 +646,39 @@
             color: #fff;
         }
         .pay-total {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 700;
             color: #fff;
         }
 
         /* ===== ФУТЕР ===== */
         footer {
-            margin-top: 40px;
-            color: var(--text-muted);
-            font-size: 13px;
+            margin-top: 48px;
+            padding: 28px 20px;
             border-top: 1px solid var(--border-subtle);
-            padding-top: 24px;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            gap: 16px;
+            text-align: center;
         }
-        .footer-cross {
-            font-size: 28px;
-            opacity: 0.2;
-            color: var(--accent);
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 4px;
+        }
+        .footer-text {
+            max-width: 700px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            letter-spacing: 0.2px;
+        }
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+            opacity: 0.6;
         }
 
         /* ===== АДАПТИВ ===== */
@@ -702,14 +687,14 @@
                 padding: 16px 12px;
             }
             .card-panel {
-                padding: 18px 14px;
+                padding: 20px 14px;
             }
             .top-bar {
                 flex-direction: column;
                 align-items: stretch;
             }
             .brand h1 {
-                font-size: 20px;
+                font-size: 22px;
             }
             .tabs {
                 width: 100%;
@@ -738,19 +723,12 @@
                 width: 100%;
                 justify-content: center;
             }
-            .bg-cross {
-                font-size: 80px;
-                left: 5px;
+            .bg-orb--1,
+            .bg-orb--2 {
+                opacity: 0.4;
             }
-            .bg-pulse {
-                width: 80px;
-                height: 80px;
-                right: 10px;
-                bottom: 10px;
-            }
-            footer {
-                flex-direction: column;
-                text-align: center;
+            .bg-orb--3 {
+                display: none;
             }
         }
         @media (max-width: 480px) {
@@ -760,34 +738,47 @@
             .plan-control .qty-input {
                 width: 52px;
             }
+            .brand-icon {
+                width: 44px;
+                height: 44px;
+            }
+            .brand-icon svg {
+                width: 30px;
+                height: 30px;
+            }
         }
 
-        /* утилиты */
         .hidden {
             display: none !important;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ФОНА -->
-    <div class="bg-cross">✚</div>
-    <div class="bg-pulse"></div>
+    <!-- ===== ДЕКОРАТИВНЫЕ ОРБЫ ===== -->
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
 
     <div class="container">
 
-        <!-- ВЕРХНИЙ БАР -->
+        <!-- ===== ВЕРХНИЙ БАР ===== -->
         <div class="top-bar">
             <div class="brand">
                 <div class="brand-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" stroke="#5f9eff" stroke-width="2" opacity="0.3" />
-                        <circle cx="50" cy="50" r="35" fill="#1a2f5a" stroke="#3a6bb0" stroke-width="1.5" />
-                        <text x="50" y="58" font-size="36" text-anchor="middle" fill="#fff" font-family="Arial">👨‍⚕️</text>
-                        <rect x="42" y="16" width="16" height="4" rx="2" fill="#5f9eff" />
-                        <rect x="48" y="12" width="4" height="12" rx="2" fill="#5f9eff" />
-                        <circle cx="50" cy="76" r="8" fill="none" stroke="#5f9eff" stroke-width="1.5" opacity="0.4" />
-                        <circle cx="50" cy="76" r="5" fill="none" stroke="#5f9eff" stroke-width="1" opacity="0.2" />
+                        <circle cx="50" cy="50" r="44" stroke="#5f9eff" stroke-width="1.5" opacity="0.25" />
+                        <circle cx="50" cy="50" r="34" fill="#1a2f5a" stroke="#3a6bb0" stroke-width="1.5" />
+                        <text x="50" y="58" font-size="38" text-anchor="middle" fill="#fff" font-family="Arial">👨‍⚕️</text>
+                        <rect x="42" y="18" width="16" height="4" rx="2" fill="#5f9eff" />
+                        <rect x="48" y="14" width="4" height="12" rx="2" fill="#5f9eff" />
+                        <circle cx="50" cy="78" r="10" fill="none" stroke="#5f9eff" stroke-width="1.5" opacity="0.3" />
+                        <circle cx="50" cy="78" r="6" fill="none" stroke="#5f9eff" stroke-width="1" opacity="0.15" />
                     </svg>
                 </div>
                 <div>
@@ -800,13 +791,13 @@
             </div>
         </div>
 
-        <!-- ТАБЫ -->
+        <!-- ===== ТАБЫ ===== -->
         <div class="tabs" role="tablist">
             <button class="tab-btn" id="tab-calc" role="tab" aria-controls="calc" aria-selected="true">Крафты</button>
             <button class="tab-btn" id="tab-prices" role="tab" aria-controls="prices" aria-selected="false">Цены</button>
         </div>
 
-        <!-- КРАФТЫ -->
+        <!-- ===== КРАФТЫ ===== -->
         <section id="calc" class="card-panel" role="tabpanel">
             <div class="flex-row">
                 <div class="search-wrap">
@@ -820,15 +811,17 @@
                 </div>
             </div>
 
-            <!-- под-табы -->
+            <!-- ===== ПОД-ТАБЫ ===== -->
             <div class="sub-tabs" role="tablist">
-                <button class="sub-tab" data-mode="tree" aria-selected="true">Дерево</button>
+                <button class="sub-tab" data-mode="tree" aria-selected="true">Состав</button>
                 <button class="sub-tab" data-mode="totals" aria-selected="false">Итог по сырью</button>
-                <button class="sub-tab" data-mode="order" aria-selected="false">Порядок</button>
+                <button class="sub-tab" data-mode="order" aria-selected="false">Порядок крафта</button>
             </div>
 
             <div id="materialPanels">
+                <!-- Состав -->
                 <div id="treeWrap" class="tree-wrap"></div>
+                <!-- Итог по сырью -->
                 <div id="totalsWrap" class="totals-wrap hidden">
                     <table>
                         <thead>
@@ -839,6 +832,7 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Порядок крафта -->
                 <div id="orderWrap" class="order-wrap hidden">
                     <table>
                         <thead>
@@ -848,17 +842,17 @@
                             <tr><td colspan="5" class="muted">Нет зависимостей</td></tr>
                         </tbody>
                     </table>
-                    <p class="muted" style="font-size:13px; margin-top:8px;">Крафты округляйте по правилам сервера.</p>
+                    <p class="muted" style="font-size:13px; margin-top:10px;">Крафты округляйте по правилам сервера.</p>
                 </div>
             </div>
 
-            <div style="margin: 24px 0 8px; border-top:1px solid var(--border-subtle);"></div>
+            <div style="margin: 28px 0 10px; border-top:1px solid var(--border-subtle);"></div>
 
-            <!-- СЕТКА РЕЦЕПТОВ -->
+            <!-- ===== СЕТКА РЕЦЕПТОВ ===== -->
             <div id="recipeGrid" class="recipe-grid"></div>
         </section>
 
-        <!-- ЦЕНЫ -->
+        <!-- ===== ЦЕНЫ ===== -->
         <section id="prices" class="card-panel hidden" role="tabpanel">
             <h2>Калькулятор оплаты</h2>
             <div class="pay-row">
@@ -877,28 +871,28 @@
                 </tfoot>
             </table>
 
-            <div style="margin: 28px 0 12px; border-top:1px solid var(--border-subtle);"></div>
-            <h2 style="font-size:18px; font-weight:500; margin-bottom:12px;">Услуги</h2>
+            <div style="margin: 32px 0 14px; border-top:1px solid var(--border-subtle);"></div>
+            <h2 style="font-size:18px; font-weight:600; margin-bottom:14px;">Услуги</h2>
             <table>
                 <thead><tr><th>Услуга</th><th class="right">Цена</th></tr></thead>
                 <tbody id="services"></tbody>
             </table>
-            <div style="margin: 28px 0 12px; border-top:1px solid var(--border-subtle);"></div>
-            <h2 style="font-size:18px; font-weight:500; margin-bottom:12px;">Продажи</h2>
+            <div style="margin: 32px 0 14px; border-top:1px solid var(--border-subtle);"></div>
+            <h2 style="font-size:18px; font-weight:600; margin-bottom:14px;">Продажи</h2>
             <table>
                 <thead><tr><th>Товар</th><th class="right">Цена</th><th>Примечание</th></tr></thead>
                 <tbody id="goods"></tbody>
             </table>
         </section>
 
-        <!-- ФУТЕР -->
+        <!-- ===== ФУТЕР ===== -->
         <footer>
-            <span>© Bigby</span>
-            <span class="footer-cross">✚</span>
-            <span style="text-align: center; max-width: 600px;">
+            <div class="footer-divider"></div>
+            <div class="footer-text">
                 Данный сайт не является руководством по реальной медицине и не имеет отношения к медицинской практике.
                 Ресурс создан исключительно для помощи в крафте медицинских предметов на RP-сервере.
-            </span>
+            </div>
+            <div class="footer-copy">© Bigby</div>
         </footer>
     </div>
 
@@ -961,7 +955,7 @@
                 ] },
             { id: "paracetamol", name: "Парацетамол", output: 1, stack: 10, timeSec: 60, ing: [
                     { name: "Агава", qty: 1, unit: "шт" }, { name: "Соль", qty: 1, unit: "шт" },
-                    { name: "Стеклянная бутылка", qty: 1, unit: "шт" }, { name: "Яд", qty: 1, unit: "шт" }
+                    { name: "Стеклянная бутылка", qty: 1, unit: "шт" }
                 ] },
             { id: "detox", name: "Детокс", output: 1, stack: 10, timeSec: 60, ing: [
                     { name: "Вода", qty: 1, unit: "шт" }, { name: "Змеиный яд", qty: 1, unit: "шт" },
@@ -1254,7 +1248,7 @@
             const totalsBody = $("#materialsTableBody");
             const orderBody = $("#craftOrderTableBody");
 
-            // дерево
+            // ===== СОСТАВ (дерево) =====
             if (plan.length === 0) {
                 treeWrap.innerHTML = `<div class="muted">Нет выбранных крафтов</div>`;
             } else {
@@ -1268,7 +1262,7 @@
                 }).join('');
             }
 
-            // итоги
+            // ===== ИТОГ ПО СЫРЬЮ =====
             const bag = new Map();
             plan.forEach(line => {
                 const t = makeTree(line.id, line.qty, expand, new Set([line.id]));
@@ -1283,7 +1277,7 @@
                     `<tr><td>${it.name}</td><td class="right">${fmt(it.qty)}</td><td>${it.unit}</td></tr>`).join('');
             }
 
-            // порядок
+            // ===== ПОРЯДОК КРАФТА =====
             const allNeeds = new Map(),
                 allEdges = new Map();
             plan.forEach(line => {
@@ -1313,11 +1307,16 @@
                     ).join('');
             }
 
-            // видимость
+            // ===== ВИДИМОСТЬ ПАНЕЛЕЙ =====
             $("#treeWrap").style.display = MAT_MODE === 'tree' ? 'block' : 'none';
             $("#totalsWrap").style.display = MAT_MODE === 'totals' ? 'block' : 'none';
             $("#orderWrap").style.display = MAT_MODE === 'order' ? 'block' : 'none';
-            $$(".sub-tab").forEach(b => b.setAttribute("aria-selected", b.dataset.mode === MAT_MODE ? "true" : "false"));
+
+            // ===== ОБНОВЛЕНИЕ АКТИВНОСТИ ПОД-ТАБОВ =====
+            $$(".sub-tab").forEach(b => {
+                const isActive = b.dataset.mode === MAT_MODE;
+                b.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
         }
 
         function renderTree(children) {
@@ -1329,30 +1328,30 @@
         }
 
         // --------------------------------------------------------------
-        // ТЕМА
+        // ТЕМА (только тёмная, но оставляем переключатель для гибкости)
         // --------------------------------------------------------------
         (function theme() {
-            const key = "hrp_theme",
-                prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const key = "hrp_theme";
             const saved = localStorage.getItem(key);
-            const start = saved || (prefers ? "dark" : "light");
+            // Всегда тёмная, но если пользователь переключил — сохраняем
+            const start = saved || "dark";
 
             function apply(t) {
                 const isDark = t === 'dark';
-                document.documentElement.style.setProperty('--bg', isDark ? '#0a0c12' : '#f0f2f8');
-                document.documentElement.style.setProperty('--bg-secondary', isDark ? '#0f121b' : '#f8faff');
-                document.documentElement.style.setProperty('--surface', isDark ? '#141a24' : '#ffffff');
-                document.documentElement.style.setProperty('--card', isDark ? '#1b2330' : '#eef1f6');
-                document.documentElement.style.setProperty('--card-hover', isDark ? '#222c3c' : '#e3e8ef');
-                document.documentElement.style.setProperty('--border-subtle', isDark ? '#2a3444' : '#d0d7e3');
-                document.documentElement.style.setProperty('--text', isDark ? '#edf2f7' : '#181e2a');
-                document.documentElement.style.setProperty('--text-muted', isDark ? '#8f9bb3' : '#5f6b7a');
-                document.documentElement.style.setProperty('--text-soft', isDark ? '#c5d0e0' : '#2d3545');
+                document.documentElement.style.setProperty('--bg-primary', isDark ? '#080b12' : '#f0f2f8');
+                document.documentElement.style.setProperty('--bg-secondary', isDark ? '#0d111c' : '#f8faff');
+                document.documentElement.style.setProperty('--surface', isDark ? '#131b28' : '#ffffff');
+                document.documentElement.style.setProperty('--card', isDark ? '#1a2436' : '#eef1f6');
+                document.documentElement.style.setProperty('--card-hover', isDark ? '#212e44' : '#e3e8ef');
+                document.documentElement.style.setProperty('--border-subtle', isDark ? '#2a3850' : '#d0d7e3');
+                document.documentElement.style.setProperty('--text', isDark ? '#eaf0f8' : '#181e2a');
+                document.documentElement.style.setProperty('--text-muted', isDark ? '#8f9fb5' : '#5f6b7a');
+                document.documentElement.style.setProperty('--text-soft', isDark ? '#c8d4e6' : '#2d3545');
                 document.documentElement.style.setProperty('--accent', isDark ? '#5f9eff' : '#2a6df4');
                 document.documentElement.style.setProperty('--accent-dim', isDark ? '#2f5a9a' : '#4a7fd9');
                 document.documentElement.style.setProperty('--danger', isDark ? '#e45c5c' : '#c53a3a');
                 localStorage.setItem(key, t);
-                document.getElementById("toggleTheme").textContent = isDark ? '☀️ Тема' : '🌙 Тема';
+                document.getElementById("toggleTheme").textContent = isDark ? '☀️ Светлая' : '🌙 Тёмная';
             }
             apply(start);
             document.getElementById("toggleTheme").addEventListener("click", () => {
@@ -1383,21 +1382,25 @@
         // --------------------------------------------------------------
         // ПОД-ТАБЫ
         // --------------------------------------------------------------
-        $$(".sub-tab").forEach(btn => btn.addEventListener("click", () => { MAT_MODE = btn.dataset.mode;
-            renderAllMaterials(); }));
+        $$(".sub-tab").forEach(btn => btn.addEventListener("click", () => {
+            MAT_MODE = btn.dataset.mode;
+            renderAllMaterials();
+        }));
 
         // --------------------------------------------------------------
         // ПОИСК, ОЧИСТКА, РАЗВОРАЧИВАНИЕ
         // --------------------------------------------------------------
         document.getElementById("craftSearch").addEventListener("input", renderGrid);
         document.getElementById("expandToRaw").addEventListener("change", renderAllMaterials);
-        document.getElementById("planClearAll").addEventListener("click", () => { plan = [];
+        document.getElementById("planClearAll").addEventListener("click", () => {
+            plan = [];
             persistPlan();
             renderGrid();
-            renderAllMaterials(); });
+            renderAllMaterials();
+        });
 
         // --------------------------------------------------------------
-        // ЦЕНЫ
+        // ЦЕНЫ (калькулятор)
         // --------------------------------------------------------------
         (function initPay() {
             const sel = document.getElementById("payItem");
