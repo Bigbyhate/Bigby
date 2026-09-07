@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -267,9 +268,12 @@ function normName(s){
 /* -------------------- ДАННЫЕ: докторские крафты -------------------- */
 const DOCTOR_CRAFTS = [
   {id:"aptechka-heroine", name:"Аптечка на героине", output:1, stack:10, timeSec:60, ing:[
+    {name:"Алоэ",qty:1,unit:"шт"},
+    {name:"Аляскинский женьшень",qty:1,unit:"шт"},
+    {name:"Бинт стерильный",qty:1,unit:"шт"},
     {name:"Героин",qty:1,unit:"шт"},
-    {name:"Противоядие",qty:1,unit:"шт"},
-    {name:"Бинт стерильный",qty:1,unit:"шт"}]},
+    {name:"Дикая мята",qty:1,unit:"шт"},
+    {name:"Тысячелистник",qty:1,unit:"шт"}]},
 
   {id:"aptechka-opium", name:"Аптечка на опиуме", output:1, stack:10, timeSec:60, ing:[
     {name:"Опиум",qty:1,unit:"шт"},
@@ -338,8 +342,7 @@ const DOCTOR_CRAFTS = [
   {id:"paracetamol", name:"Парацетамол", output:1, stack:10, timeSec:60, ing:[
     {name:"Агава",qty:1,unit:"шт"},
     {name:"Соль",qty:1,unit:"шт"},
-    {name:"Стеклянная бутылка",qty:1,unit:"шт"},
-    {name:"Яд",qty:1,unit:"шт"}]},
+    {name:"Стеклянная бутылка",qty:1,unit:"шт"}]},
 
   {id:"detox", name:"Детокс", output:1, stack:10, timeSec:60, ing:[
     {name:"Вода",qty:1,unit:"шт"},
