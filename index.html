@@ -31,7 +31,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font: 16px/1.65 var(--font);
+      font: 18px/1.7 var(--font);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       display: flex;
@@ -42,52 +42,51 @@
       max-width: 1240px;
       width: 100%;
       display: grid;
-      grid-template-columns: 60px 1fr 60px;
+      grid-template-columns: 48px 1fr 48px;
       gap: 24px;
       align-items: start;
     }
-    /* боковые декоративные панели — усиленный дизайн */
+    /* боковые декоративные панели — компактнее */
     .deco-left, .deco-right {
       position: sticky;
       top: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
-      padding-top: 20px;
+      gap: 24px;
+      padding-top: 16px;
     }
     .deco-left .line, .deco-right .line {
       width: 2px;
       background: linear-gradient(to bottom, transparent, var(--accent), var(--muted), transparent);
-      height: 240px;
-      opacity: 0.4;
+      height: 180px;
+      opacity: 0.35;
       border-radius: 4px;
     }
     .deco-icon {
-      font-size: 28px;
-      opacity: 0.4;
+      font-size: 22px;
+      opacity: 0.35;
       filter: grayscale(0.3);
-      transition: 0.25s;
+      transition: 0.2s;
       background: var(--paper);
-      padding: 8px;
+      padding: 6px;
       border-radius: 50%;
       border: 1px solid var(--line);
       line-height: 1;
       box-shadow: 0 4px 12px rgba(0,0,0,.3);
     }
-    .deco-icon:hover { opacity: 0.8; filter: grayscale(0); transform: scale(1.05); }
+    .deco-icon:hover { opacity: 0.7; filter: grayscale(0); transform: scale(1.05); }
     .deco-left .deco-icon { transform: scaleX(-1); }
     .deco-left .deco-icon:hover { transform: scaleX(-1) scale(1.05); }
 
-    /* маленькие декоративные точки */
     .dot-group {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       opacity: 0.2;
     }
     .dot-group span {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
     }
@@ -125,16 +124,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 600;
       color: #fff;
       letter-spacing: -0.5px;
       border: 1px solid rgba(255,255,255,.08);
     }
-    h1 { font-size: 24px; margin: 0; font-weight: 500; letter-spacing: -0.3px; }
+    h1 { font-size: 26px; margin: 0; font-weight: 500; letter-spacing: -0.3px; }
     .sub {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing: 0.02em;
       border-left: 1px solid var(--line);
       padding-left: 14px;
@@ -165,7 +164,7 @@
       cursor: pointer;
       text-decoration: none;
       font: inherit;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 450;
       transition: 0.15s;
     }
@@ -185,7 +184,7 @@
       border-radius: 999px;
       cursor: pointer;
       font: inherit;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 450;
       transition: 0.15s;
       box-shadow: 0 4px 14px rgba(63,140,255,.2);
@@ -210,7 +209,7 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 6px 16px;
-      font-size: 13px;
+      font-size: 14px;
       background: var(--input-bg);
     }
 
@@ -225,7 +224,7 @@
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
-    label { display: block; margin: 8px 0 4px; font-weight: 500; font-size: 14px; color: var(--muted); }
+    label { display: block; margin: 8px 0 4px; font-weight: 500; font-size: 15px; color: var(--muted); }
     input, select {
       width: 100%;
       padding: 10px 14px;
@@ -236,7 +235,7 @@
       font: inherit;
       outline: none;
       transition: 0.15s;
-      font-size: 14px;
+      font-size: 15px;
     }
     select, option { color: var(--ink); background: var(--input-bg); }
     input:focus, select:focus {
@@ -247,7 +246,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 15px;
     }
     th, td {
       padding: 10px 8px;
@@ -255,7 +254,7 @@
       vertical-align: middle;
     }
     th {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted);
@@ -263,7 +262,7 @@
     }
     .right { text-align: right; }
     .muted { color: var(--muted); }
-    .small { font-size: 13px; }
+    .small { font-size: 14px; }
     .mono { font-family: var(--mono); letter-spacing: -0.2px; }
 
     .hr { height: 1px; background: var(--line); margin: 18px 0; }
@@ -271,7 +270,7 @@
     /* плитки */
     .tiles {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
       gap: 16px;
       margin-top: 10px;
     }
@@ -282,30 +281,40 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       transition: 0.1s;
     }
     .tile:hover { border-color: var(--accent); }
-    .tile h4 { margin: 0; font-size: 16px; font-weight: 500; letter-spacing: -0.2px; }
-    .chip {
+    .tile h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .tile .chip {
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 4px 12px;
+      padding: 2px 10px;
       font-size: 12px;
       color: var(--muted);
       background: var(--bg);
+      white-space: nowrap;
     }
     .ing { margin: 0; padding-left: 20px; font-size: 14px; }
     .qtybar {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
-      margin-top: 6px;
+      margin-top: 4px;
     }
     .qtybar input {
-      max-width: 80px;
+      max-width: 72px;
       text-align: right;
-      padding: 6px 10px;
+      padding: 4px 8px;
       font-size: 14px;
     }
     .subtabs {
@@ -335,7 +344,7 @@
       padding: 14px;
       background: var(--bg);
     }
-    .tree summary { cursor: pointer; user-select: none; font-weight: 450; font-size: 14px; }
+    .tree summary { cursor: pointer; user-select: none; font-weight: 450; font-size: 15px; }
     .tree ul { margin: 8px 0 0 18px; padding-left: 8px; }
     .badge {
       display: inline-block;
@@ -358,7 +367,7 @@
       border-top: 1px solid var(--line);
       text-align: center;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing: 0.02em;
       line-height: 1.8;
     }
@@ -367,10 +376,49 @@
     .icon { margin-right: 8px; opacity: 0.6; }
     .deco-icon { user-select: none; }
 
+    /* поиск и сброс на общем уровне — крупно */
+    .search-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin: 6px 0 16px;
+      flex-wrap: wrap;
+    }
+    .search-row input {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 18px;
+      font-size: 17px;
+      border-radius: 999px;
+      background: var(--input-bg);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      outline: none;
+      transition: 0.15s;
+    }
+    .search-row input:focus {
+      box-shadow: 0 0 0 3px rgba(63,140,255,.2);
+      border-color: var(--accent);
+    }
+    .search-row .btn {
+      padding: 12px 28px;
+      font-size: 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .search-row .btn.danger {
+      background: var(--danger);
+      box-shadow: 0 4px 14px rgba(229,87,75,.2);
+    }
+    .search-row .btn.danger:hover { filter: brightness(1.08); }
+
     @media (max-width: 720px) {
       .app { grid-template-columns: 1fr; }
       .deco-left, .deco-right { display: none; }
       .main { padding: 16px; }
+      .search-row input { font-size: 15px; padding: 10px 14px; }
+      .search-row .btn { padding: 10px 18px; font-size: 14px; }
+      .tile h4 { font-size: 14px; white-space: normal; }
     }
   </style>
 </head>
@@ -397,9 +445,7 @@
           <span class="sub">Крафты доктора · Ингредиенты · Цены</span>
         </div>
       </div>
-      <div class="toolbar">
-        <button id="toggleTheme" class="tab" aria-pressed="false" style="border:1px solid var(--line);" aria-label="Переключить тему">🌙</button>
-      </div>
+      <!-- убрана иконка переключения темы -->
     </header>
 
     <nav class="tabs" role="tablist" aria-label="Разделы">
@@ -410,7 +456,7 @@
     <!-- ===== КАЛЬКУЛЯТОР ===== -->
     <section id="calc" class="card" role="tabpanel" aria-labelledby="tab-calc">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <h3 style="margin:0; font-weight:500; font-size:18px;">Материалы и порядок</h3>
+        <h3 style="margin:0; font-weight:500; font-size:19px;">Материалы и порядок</h3>
         <nav class="subtabs" role="tablist" aria-label="Вид итогов">
           <button class="tab" data-mode="tree" aria-selected="true">🌳 Дерево</button>
           <button class="tab" data-mode="totals" aria-selected="false">📦 Сырьё</button>
@@ -441,15 +487,13 @@
 
       <div class="hr"></div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-        <h3 style="margin:0; font-weight:500; font-size:18px;">Крафты доктора</h3>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-          <input id="craftSearch" type="text" placeholder="Поиск: мазь, опиум…" style="max-width:220px;">
-          <label class="pill small" title="Разворачивать крафтовые ингредиенты до сырья">
-            <input id="expandToRaw" type="checkbox" checked> Разворачивать
-          </label>
-          <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Очистить</button>
-        </div>
+      <!-- увеличенный поиск + сброс на общем уровне -->
+      <div class="search-row">
+        <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
+        <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
+        <label class="pill small" title="Разворачивать крафтовые ингредиенты до сырья">
+          <input id="expandToRaw" type="checkbox" checked> Разворачивать
+        </label>
       </div>
 
       <div id="tiles" class="tiles" aria-live="polite"></div>
@@ -457,7 +501,7 @@
 
     <!-- ===== ЦЕНЫ ===== -->
     <section id="prices" class="card" role="tabpanel" aria-labelledby="tab-prices" hidden>
-      <h3 style="margin:4px 0 14px; font-weight:500; font-size:18px;">Калькулятор оплаты</h3>
+      <h3 style="margin:4px 0 14px; font-weight:500; font-size:19px;">Калькулятор оплаты</h3>
       <div class="toolbar" style="gap:12px; flex-wrap:wrap;">
         <select id="payItem" aria-label="Позиция для чека" style="max-width:240px;"></select>
         <input id="payQty" type="number" min="1" step="1" value="1" style="max-width:100px;" aria-label="Количество">
@@ -472,10 +516,10 @@
 
       <div class="hr"></div>
 
-      <h3 style="margin:14px 0; font-weight:500; font-size:18px;">💰 Стоимость услуг</h3>
+      <h3 style="margin:14px 0; font-weight:500; font-size:19px;">💰 Стоимость услуг</h3>
       <table><thead><tr><th>Услуга</th><th class="right">Цена</th></tr></thead><tbody id="services"></tbody></table>
       <div class="hr"></div>
-      <h3 style="margin:14px 0; font-weight:500; font-size:18px;">🧾 Продажи</h3>
+      <h3 style="margin:14px 0; font-weight:500; font-size:19px;">🧾 Продажи</h3>
       <table><thead><tr><th>Товар</th><th class="right">Цена</th><th>Примечание</th></tr></thead><tbody id="goods"></tbody></table>
     </section>
 
@@ -486,7 +530,7 @@
     </footer>
   </main>
 
-  <!-- правая декоративная панель (исправлена иконка) -->
+  <!-- правая декоративная панель -->
   <aside class="deco-right">
     <div class="deco-icon">🧪</div>
     <div class="line"></div>
@@ -618,20 +662,20 @@
     const overflow = craft.stack ? (totalOut > craft.stack) : false;
     return `
       <article class="tile" data-id="${craft.id}">
-        <div style="display:flex; justify-content:space-between; gap:8px; align-items:flex-start">
+        <div style="display:flex; justify-content:space-between; gap:6px; align-items:center;">
           <h4>${craft.name}</h4>
           <span class="chip" title="Макс. стак">${craft.stack ? ("стак "+craft.stack) : "—"}</span>
         </div>
         <div class="chip" title="Выход и план">⏱ ${fmtTime(craft.timeSec)} · выход: ×${craft.output} · план: ×<span class="planN">${plannedQty}</span> → всего: <b class="totalOut">${totalOut}</b>${overflow? ' <span class="badge" style="border-color: var(--danger); color: var(--danger)">>стак</span>' : ''}</div>
         <div>
-          <div class="small muted" style="margin-bottom:4px">Ингредиенты на 1 крафт:</div>
+          <div class="small muted" style="margin-bottom:4px;">Ингредиенты на 1 крафт:</div>
           <ul class="ing">${craft.ing.map(i=>`<li>${i.name} — <b>${i.qty}</b> ${i.unit||"шт"}</li>`).join("")}</ul>
         </div>
         <div class="qtybar">
           <button class="btn ghost" data-act="dec" aria-label="Уменьшить">−</button>
           <input class="qty" type="number" min="0" step="1" value="${plannedQty}" aria-label="План крафтов">
           <button class="btn ghost" data-act="inc" aria-label="Увеличить">+</button>
-          <button class="btn danger" data-act="clr" style="margin-left:auto">Сброс</button>
+          <button class="btn danger" data-act="clr" style="margin-left:auto;">Сброс</button>
         </div>
       </article>
     `;
