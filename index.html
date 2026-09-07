@@ -202,22 +202,23 @@
     }
     .btn.danger:hover { filter: brightness(1.08); }
 
-    /* компактный переключатель — обводка в размер текста */
+    /* компактный переключатель — обводка вплотную к тексту */
     .toggle-compact {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 5px;
+      padding: 5px 10px;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--input-bg);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--muted);
       cursor: pointer;
       transition: 0.15s;
       white-space: nowrap;
-      line-height: 1;
+      line-height: 1.2;
       user-select: none;
+      height: 32px;
     }
     .toggle-compact:hover {
       border-color: var(--accent);
@@ -235,6 +236,7 @@
       font-size: 12px;
       font-weight: 450;
       letter-spacing: 0.01em;
+      line-height: 1;
     }
 
     .card {
@@ -403,7 +405,7 @@
     /* поиск и сброс на общем уровне — крупно */
     .search-row {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
       margin: 6px 0 16px;
       flex-wrap: wrap;
@@ -515,7 +517,7 @@
         <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
         <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
         
-        <!-- компактный переключатель с обводкой в размер текста -->
+        <!-- компактный переключатель с обводкой вплотную к тексту -->
         <label class="toggle-compact" title="Разворачивать крафтовые ингредиенты до сырья">
           <input id="expandToRaw" type="checkbox" checked>
           <span class="label-text">Разворачивать</span>
