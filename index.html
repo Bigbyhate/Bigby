@@ -99,12 +99,12 @@
       overflow: hidden;
     }
 
-    /* ===== ВИНТАЖНЫЙ БАННЕР 1901 (RDR2) ===== */
+    /* ===== МЕДИЦИНСКИЙ БАННЕР ===== */
     .hero {
       position: relative;
       width: 100%;
-      height: 280px;
-      background-image: url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1600&auto=format&fit=crop');
+      height: 260px;
+      background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -112,83 +112,47 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--line);
-      overflow: hidden;
-      /* эффект старой фотографии — сепия + приглушение цвета */
-      filter: sepia(0.55) contrast(1.05) saturate(0.75);
     }
-    /* затемняющий оверлей + винтажный оттенок */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%),
-        linear-gradient(
-          180deg,
-          rgba(20,15,8,.55) 0%,
-          rgba(15,12,8,.7) 55%,
-          rgba(17,22,30,.96) 100%
-        );
+      background: linear-gradient(
+        180deg,
+        rgba(10,12,16,.55) 0%,
+        rgba(10,12,16,.75) 60%,
+        rgba(17,22,30,.95) 100%
+      );
       z-index: 1;
-    }
-    /* лёгкая "плёнка" — зерно старой фотографии */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.02) 0px,
-          rgba(255,255,255,0.02) 1px,
-          transparent 1px,
-          transparent 3px
-        ),
-        radial-gradient(circle at 20% 30%, rgba(255,220,170,.06) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,220,170,.05) 0%, transparent 45%);
-      pointer-events: none;
-      z-index: 2;
-      mix-blend-mode: overlay;
     }
     .hero-content {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       text-align: center;
       padding: 0 20px;
     }
     .hero-title {
-      font-size: 52px;
+      font-size: 46px;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: -0.5px;
       margin: 0;
-      color: #f5e6c8;
-      text-shadow:
-        0 0 2px rgba(0,0,0,.9),
-        0 4px 24px rgba(0,0,0,.95),
-        0 2px 8px rgba(120,80,30,.4);
-      font-family: 'Georgia', 'Times New Roman', serif;
-      line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(0,0,0,.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-title .cross {
+      font-size: 40px;
+      filter: drop-shadow(0 2px 12px rgba(63,140,255,.6));
     }
     .hero-sub {
-      margin-top: 14px;
-      font-size: 14px;
-      color: #d9c9a8;
-      letter-spacing: 0.35em;
+      margin-top: 10px;
+      font-size: 15px;
+      color: #c3ccda;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-shadow: 0 2px 10px rgba(0,0,0,.9);
-      font-weight: 400;
-    }
-    /* декоративные линии по бокам подзаголовка */
-    .hero-sub::before,
-    .hero-sub::after {
-      content: '';
-      display: inline-block;
-      width: 40px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #b89b6a, transparent);
-      vertical-align: middle;
-      margin: 0 14px;
-      opacity: 0.7;
+      text-shadow: 0 2px 10px rgba(0,0,0,.7);
     }
 
     /* ===== ВНУТРЕННИЙ КОНТЕНТ ===== */
@@ -492,10 +456,10 @@
       .app { grid-template-columns: 1fr; }
       .deco-left, .deco-right { display: none; }
       .content { padding: 16px; }
-      .hero { height: 210px; }
+      .hero { height: 200px; }
       .hero-title { font-size: 32px; }
-      .hero-sub { font-size: 11px; letter-spacing: 0.25em; }
-      .hero-sub::before, .hero-sub::after { width: 20px; margin: 0 8px; }
+      .hero-title .cross { font-size: 28px; }
+      .hero-sub { font-size: 12px; }
       .search-row input { font-size: 15px; padding: 10px 14px; }
       .search-row .btn { padding: 10px 18px; font-size: 14px; }
       .tile h4 { font-size: 14px; white-space: normal; }
@@ -517,10 +481,10 @@
 
   <!-- основной контент -->
   <main class="main">
-    <!-- ВИНТАЖНЫЙ БАННЕР 1901 -->
+    <!-- МЕДИЦИНСКИЙ БАННЕР -->
     <div class="hero">
       <div class="hero-content">
-        <h1 class="hero-title">Доктор Bigby</h1>
+        <h1 class="hero-title"><span class="cross">⚕️</span> Доктор Bigby</h1>
         <div class="hero-sub">Крафты · Ингредиенты · Цены</div>
       </div>
     </div>
