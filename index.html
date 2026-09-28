@@ -46,7 +46,7 @@
       gap: 24px;
       align-items: start;
     }
-    /* боковые декоративные панели — компактнее */
+    /* боковые декоративные панели */
     .deco-left, .deco-right {
       position: sticky;
       top: 28px;
@@ -96,54 +96,68 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 26px 28px 32px;
-      backdrop-filter: blur(2px);
+      overflow: hidden;
     }
 
-    /* хедер */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 14px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 14px;
-    }
-    .brand {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-    .logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: radial-gradient(circle at 30% 30%, #3f8cff, #0a4cbb);
-      box-shadow: 0 8px 20px rgba(63,140,255,.3);
+    /* ===== МЕДИЦИНСКИЙ БАННЕР ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,12,16,.55) 0%,
+        rgba(10,12,16,.75) 60%,
+        rgba(17,22,30,.95) 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-title {
+      font-size: 46px;
       font-weight: 600;
-      color: #fff;
       letter-spacing: -0.5px;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    h1 { font-size: 26px; margin: 0; font-weight: 500; letter-spacing: -0.3px; }
-    .sub {
-      color: var(--muted);
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      border-left: 1px solid var(--line);
-      padding-left: 14px;
-      margin-left: 6px;
-    }
-    .toolbar {
-      display: flex;
-      gap: 10px;
+      margin: 0;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(0,0,0,.8);
+      display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .hero-title .cross {
+      font-size: 40px;
+      filter: drop-shadow(0 2px 12px rgba(63,140,255,.6));
+    }
+    .hero-sub {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #c3ccda;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,.7);
+    }
+
+    /* ===== ВНУТРЕННИЙ КОНТЕНТ ===== */
+    .content {
+      padding: 26px 28px 32px;
     }
 
     /* табы */
@@ -202,7 +216,7 @@
     }
     .btn.danger:hover { filter: brightness(1.08); }
 
-    /* КОМПАКТНЫЙ ПЕРЕКЛЮЧАТЕЛЬ — сжат ГОРИЗОНТАЛЬНО (слева-справа) */
+    /* компактный переключатель */
     .toggle-compact {
       display: inline-flex;
       align-items: center;
@@ -402,7 +416,7 @@
     .icon { margin-right: 8px; opacity: 0.6; }
     .deco-icon { user-select: none; }
 
-    /* поиск и сброс на общем уровне — крупно */
+    /* поиск и сброс */
     .search-row {
       display: flex;
       gap: 12px;
@@ -441,7 +455,11 @@
     @media (max-width: 720px) {
       .app { grid-template-columns: 1fr; }
       .deco-left, .deco-right { display: none; }
-      .main { padding: 16px; }
+      .content { padding: 16px; }
+      .hero { height: 200px; }
+      .hero-title { font-size: 32px; }
+      .hero-title .cross { font-size: 28px; }
+      .hero-sub { font-size: 12px; }
       .search-row input { font-size: 15px; padding: 10px 14px; }
       .search-row .btn { padding: 10px 18px; font-size: 14px; }
       .tile h4 { font-size: 14px; white-space: normal; }
@@ -463,99 +481,96 @@
 
   <!-- основной контент -->
   <main class="main">
-    <header>
-      <div class="brand">
-        <div class="logo">⚕️</div>
-        <div>
-          <h1>Bigby</h1>
-          <span class="sub">Крафты доктора · Ингредиенты · Цены</span>
-        </div>
+    <!-- МЕДИЦИНСКИЙ БАННЕР -->
+    <div class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title"><span class="cross">⚕️</span> Доктор Bigby</h1>
+        <div class="hero-sub">Крафты · Ингредиенты · Цены</div>
       </div>
-    </header>
+    </div>
 
-    <nav class="tabs" role="tablist" aria-label="Разделы">
-      <button class="tab" id="tab-calc" role="tab" aria-controls="calc" aria-selected="true" tabindex="0">📋 Крафты</button>
-      <button class="tab" id="tab-prices" role="tab" aria-controls="prices" aria-selected="false" tabindex="-1">💰 Цены</button>
-    </nav>
+    <div class="content">
+      <nav class="tabs" role="tablist" aria-label="Разделы">
+        <button class="tab" id="tab-calc" role="tab" aria-controls="calc" aria-selected="true" tabindex="0">📋 Крафты</button>
+        <button class="tab" id="tab-prices" role="tab" aria-controls="prices" aria-selected="false" tabindex="-1">💰 Цены</button>
+      </nav>
 
-    <!-- ===== КАЛЬКУЛЯТОР ===== -->
-    <section id="calc" class="card" role="tabpanel" aria-labelledby="tab-calc">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <h3 style="margin:0; font-weight:500; font-size:19px;">Материалы и порядок</h3>
-        <nav class="subtabs" role="tablist" aria-label="Вид итогов">
-          <button class="tab" data-mode="tree" aria-selected="true">🌳 Дерево</button>
-          <button class="tab" data-mode="totals" aria-selected="false">📦 Сырьё</button>
-          <button class="tab" data-mode="order" aria-selected="false">📐 Порядок</button>
-        </nav>
-      </div>
-
-      <div class="two-cols">
-        <div id="matTree" class="tree" aria-live="polite">
-          <div class="small muted">Нет выбранных крафтов — добавьте план на плитках ниже.</div>
+      <!-- ===== КАЛЬКУЛЯТОР ===== -->
+      <section id="calc" class="card" role="tabpanel" aria-labelledby="tab-calc">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <h3 style="margin:0; font-weight:500; font-size:19px;">Материалы и порядок</h3>
+          <nav class="subtabs" role="tablist" aria-label="Вид итогов">
+            <button class="tab" data-mode="tree" aria-selected="true">🌳 Дерево</button>
+            <button class="tab" data-mode="totals" aria-selected="false">📦 Сырьё</button>
+            <button class="tab" data-mode="order" aria-selected="false">📐 Порядок</button>
+          </nav>
         </div>
-        <div>
-          <div id="totalsWrap">
-            <table id="materialsTable" aria-live="polite">
-              <thead><tr><th>Ингредиент</th><th class="right">Кол-во</th><th>Ед.</th></tr></thead>
-              <tbody><tr><td colspan="3" class="small muted">Нет выбранных крафтов</td></tr></tbody>
-            </table>
+
+        <div class="two-cols">
+          <div id="matTree" class="tree" aria-live="polite">
+            <div class="small muted">Нет выбранных крафтов — добавьте план на плитках ниже.</div>
           </div>
-          <div id="orderWrap" hidden>
-            <table id="craftOrderTable" aria-live="polite">
-              <thead><tr><th class="right">Шаг</th><th>Рецепт</th><th class="right">Нужно</th><th class="right">Выход</th><th class="right">Крафтов (≈)</th></tr></thead>
-              <tbody><tr><td colspan="5" class="small muted">Нет зависимостей</td></tr></tbody>
-            </table>
-            <p class="small muted">Крафтов (≈) — дробное, округляйте до целого по правилам сервера.</p>
+          <div>
+            <div id="totalsWrap">
+              <table id="materialsTable" aria-live="polite">
+                <thead><tr><th>Ингредиент</th><th class="right">Кол-во</th><th>Ед.</th></tr></thead>
+                <tbody><tr><td colspan="3" class="small muted">Нет выбранных крафтов</td></tr></tbody>
+              </table>
+            </div>
+            <div id="orderWrap" hidden>
+              <table id="craftOrderTable" aria-live="polite">
+                <thead><tr><th class="right">Шаг</th><th>Рецепт</th><th class="right">Нужно</th><th class="right">Выход</th><th class="right">Крафтов (≈)</th></tr></thead>
+                <tbody><tr><td colspan="5" class="small muted">Нет зависимостей</td></tr></tbody>
+              </table>
+              <p class="small muted">Крафтов (≈) — дробное, округляйте до целого по правилам сервера.</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="hr"></div>
+        <div class="hr"></div>
 
-      <!-- увеличенный поиск + сброс на общем уровне -->
-      <div class="search-row">
-        <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
-        <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
-        
-        <!-- КОМПАКТНЫЙ ПЕРЕКЛЮЧАТЕЛЬ — СЖАТ ГОРИЗОНТАЛЬНО -->
-        <label class="toggle-compact" title="Разворачивать крафтовые ингредиенты до сырья">
-          <input id="expandToRaw" type="checkbox" checked>
-          <span class="label-text">Разворачивать</span>
-        </label>
-      </div>
+        <div class="search-row">
+          <input id="craftSearch" type="text" placeholder="🔍 Поиск крафтов: мазь, опиум, настойка…">
+          <button id="planClearAll" class="btn danger" title="Очистить все планы">✕ Сбросить всё</button>
+          <label class="toggle-compact" title="Разворачивать крафтовые ингредиенты до сырья">
+            <input id="expandToRaw" type="checkbox" checked>
+            <span class="label-text">Разворачивать</span>
+          </label>
+        </div>
 
-      <div id="tiles" class="tiles" aria-live="polite"></div>
-    </section>
+        <div id="tiles" class="tiles" aria-live="polite"></div>
+      </section>
 
-    <!-- ===== ЦЕНЫ ===== -->
-    <section id="prices" class="card" role="tabpanel" aria-labelledby="tab-prices" hidden>
-      <h3 style="margin:4px 0 14px; font-weight:500; font-size:19px;">Калькулятор оплаты</h3>
-      <div class="toolbar" style="gap:12px; flex-wrap:wrap;">
-        <select id="payItem" aria-label="Позиция для чека" style="max-width:240px;"></select>
-        <input id="payQty" type="number" min="1" step="1" value="1" style="max-width:100px;" aria-label="Количество">
-        <button id="payAdd" class="btn">➕ Добавить</button>
-        <button id="payClear" class="btn danger">🗑 Очистить чек</button>
-      </div>
-      <table id="payTable" style="margin-top:10px;">
-        <thead><tr><th>Позиция</th><th class="right">Кол-во</th><th class="right">Цена за ед.</th><th class="right">Итого</th><th class="right">Действия</th></tr></thead>
-        <tbody></tbody>
-        <tfoot><tr><th colspan="3" class="right">Итого к оплате:</th><th class="right mono" id="payTotal" aria-live="polite">$0.00</th><th></th></tr></tfoot>
-      </table>
+      <!-- ===== ЦЕНЫ ===== -->
+      <section id="prices" class="card" role="tabpanel" aria-labelledby="tab-prices" hidden>
+        <h3 style="margin:4px 0 14px; font-weight:500; font-size:19px;">Калькулятор оплаты</h3>
+        <div class="toolbar" style="gap:12px; flex-wrap:wrap;">
+          <select id="payItem" aria-label="Позиция для чека" style="max-width:240px;"></select>
+          <input id="payQty" type="number" min="1" step="1" value="1" style="max-width:100px;" aria-label="Количество">
+          <button id="payAdd" class="btn">➕ Добавить</button>
+          <button id="payClear" class="btn danger">🗑 Очистить чек</button>
+        </div>
+        <table id="payTable" style="margin-top:10px;">
+          <thead><tr><th>Позиция</th><th class="right">Кол-во</th><th class="right">Цена за ед.</th><th class="right">Итого</th><th class="right">Действия</th></tr></thead>
+          <tbody></tbody>
+          <tfoot><tr><th colspan="3" class="right">Итого к оплате:</th><th class="right mono" id="payTotal" aria-live="polite">$0.00</th><th></th></tr></tfoot>
+        </table>
 
-      <div class="hr"></div>
+        <div class="hr"></div>
 
-      <h3 style="margin:14px 0; font-weight:500; font-size:19px;">💰 Стоимость услуг</h3>
-      <table><thead><tr><th>Услуга</th><th class="right">Цена</th></tr></thead><tbody id="services"></tbody></table>
-      <div class="hr"></div>
-      <h3 style="margin:14px 0; font-weight:500; font-size:19px;">🧾 Продажи</h3>
-      <table><thead><tr><th>Товар</th><th class="right">Цена</th><th>Примечание</th></tr></thead><tbody id="goods"></tbody></table>
-    </section>
+        <h3 style="margin:14px 0; font-weight:500; font-size:19px;">💰 Стоимость услуг</h3>
+        <table><thead><tr><th>Услуга</th><th class="right">Цена</th></tr></thead><tbody id="services"></tbody></table>
+        <div class="hr"></div>
+        <h3 style="margin:14px 0; font-weight:500; font-size:19px;">🧾 Продажи</h3>
+        <table><thead><tr><th>Товар</th><th class="right">Цена</th><th>Примечание</th></tr></thead><tbody id="goods"></tbody></table>
+      </section>
 
-    <footer>
-      Данный сайт не является руководством по реальной медицине и не имеет отношения к медицинской практике.<br>
-      Ресурс создан исключительно для помощи в крафте медицинских предметов на RP-сервере.<br>
-      <strong>© Bigby</strong>
-    </footer>
+      <footer>
+        Данный сайт не является руководством по реальной медицине и не имеет отношения к медицинской практике.<br>
+        Ресурс создан исключительно для помощи в крафте медицинских предметов на RP-сервере.<br>
+        <strong>© Bigby</strong>
+      </footer>
+    </div>
   </main>
 
   <!-- правая декоративная панель -->
@@ -572,7 +587,7 @@
 
 <script>
   // =====================================================
-  // ПОЛНЫЙ СКРИПТ (исправлен выход бинта стерильного)
+  // ПОЛНЫЙ СКРИПТ
   // =====================================================
 
   /* -------------------- УТИЛИТЫ -------------------- */
@@ -607,7 +622,7 @@
     });
   })();
 
-  // -------------------- ДАННЫЕ: докторские крафты (исправлен выход бинта стерильного) --------------------
+  // -------------------- ДАННЫЕ: докторские крафты --------------------
   const DOCTOR_CRAFTS = [
     {id:"aptechka-heroine", name:"Аптечка на героине", output:1, stack:10, timeSec:60, ing:[
       {name:"Алоэ",qty:1,unit:"шт"},{name:"Аляскинский женьшень",qty:1,unit:"шт"},{name:"Бинт стерильный",qty:1,unit:"шт"},
