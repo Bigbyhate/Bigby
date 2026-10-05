@@ -99,31 +99,39 @@
       overflow: hidden;
     }
 
-    /* ===== МЕДИЦИНСКИЙ БАННЕР ===== */
+    /* ===== ПРОСТОЙ ТЁМНЫЙ БАННЕР (без картинки) ===== */
     .hero {
       position: relative;
       width: 100%;
-      height: 260px;
-      background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      height: 220px;
+      background: linear-gradient(135deg, #0b0e13 0%, #121821 50%, #0a0d12 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--line);
+      overflow: hidden;
     }
+    /* декоративное свечение и тонкие линии */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(10,12,16,.55) 0%,
-        rgba(10,12,16,.75) 60%,
-        rgba(17,22,30,.95) 100%
-      );
-      z-index: 1;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(63,140,255,.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(63,140,255,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
     }
     .hero-content {
       position: relative;
@@ -132,27 +140,35 @@
       padding: 0 20px;
     }
     .hero-title {
-      font-size: 46px;
+      font-size: 52px;
       font-weight: 600;
       letter-spacing: -0.5px;
       margin: 0;
-      color: #fff;
-      text-shadow: 0 4px 24px rgba(0,0,0,.8);
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .hero-title .cross {
-      font-size: 40px;
-      filter: drop-shadow(0 2px 12px rgba(63,140,255,.6));
+      color: #f2f6ff;
+      text-shadow:
+        0 0 24px rgba(63,140,255,.35),
+        0 4px 20px rgba(0,0,0,.8);
+      line-height: 1.1;
     }
     .hero-sub {
-      margin-top: 10px;
-      font-size: 15px;
-      color: #c3ccda;
-      letter-spacing: 0.08em;
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      text-shadow: 0 2px 10px rgba(0,0,0,.7);
+      text-shadow: 0 2px 10px rgba(0,0,0,.9);
+      font-weight: 400;
+    }
+    .hero-sub::before,
+    .hero-sub::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+      vertical-align: middle;
+      margin: 0 14px;
+      opacity: 0.6;
     }
 
     /* ===== ВНУТРЕННИЙ КОНТЕНТ ===== */
@@ -456,10 +472,10 @@
       .app { grid-template-columns: 1fr; }
       .deco-left, .deco-right { display: none; }
       .content { padding: 16px; }
-      .hero { height: 200px; }
+      .hero { height: 170px; }
       .hero-title { font-size: 32px; }
-      .hero-title .cross { font-size: 28px; }
-      .hero-sub { font-size: 12px; }
+      .hero-sub { font-size: 11px; letter-spacing: 0.25em; }
+      .hero-sub::before, .hero-sub::after { width: 20px; margin: 0 8px; }
       .search-row input { font-size: 15px; padding: 10px 14px; }
       .search-row .btn { padding: 10px 18px; font-size: 14px; }
       .tile h4 { font-size: 14px; white-space: normal; }
@@ -481,10 +497,10 @@
 
   <!-- основной контент -->
   <main class="main">
-    <!-- МЕДИЦИНСКИЙ БАННЕР -->
+    <!-- ПРОСТОЙ ТЁМНЫЙ БАННЕР -->
     <div class="hero">
       <div class="hero-content">
-        <h1 class="hero-title"><span class="cross">⚕️</span> Доктор Bigby</h1>
+        <h1 class="hero-title">Доктор Bigby</h1>
         <div class="hero-sub">Крафты · Ингредиенты · Цены</div>
       </div>
     </div>
@@ -662,8 +678,9 @@
     {id:"maz-salic", name:"Салициловая мазь", output:1, stack:10, timeSec:60, ing:[
       {name:"Животный жир",qty:1,unit:"шт"},{name:"Мягкая древесина",qty:1,unit:"шт"},{name:"Шалфей олеандровый",qty:2,unit:"шт"}]},
     {id:"tonik-toniz", name:"Тонизирующий тоник", output:2, stack:15, timeSec:60, ing:[
-      {name:"Агава",qty:1,unit:"шт"},{name:"Аляскинский женьшень",qty:1,unit:"шт"},{name:"Дикая мята",qty:1,unit:"шт"},
-      {name:"Сахар",qty:2,unit:"шт"},{name:"Стеклянная бутылка",qty:1,unit:"шт"},{name:"Черная смородина",qty:2,unit:"шт"}]},
+      {name:"Агава",qty:1,unit:"шт"},{name:"Аляскинский женьшень",qty:1,unit:"шт"},{name:"Американский женьшень",qty:1,unit:"шт"},
+      {name:"Дикая мята",qty:1,unit:"шт"},{name:"Ползучий тимьян",qty:1,unit:"шт"},{name:"Сахар",qty:2,unit:"шт"},
+      {name:"Стеклянная бутылка",qty:1,unit:"шт"},{name:"Черная смородина",qty:2,unit:"шт"}]},
     {id:"tonik-hinin", name:"Тоник с Хинином", output:2, stack:15, timeSec:60, ing:[
       {name:"Алоэ",qty:2,unit:"шт"},{name:"Мягкая древесина",qty:1,unit:"шт"},{name:"Спирт",qty:1,unit:"шт"},{name:"Стеклянная бутылка",qty:1,unit:"шт"}]},
     {id:"nast-uspokaiv", name:"Успокаивающая настойка", output:1, stack:15, timeSec:20, ing:[
